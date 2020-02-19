@@ -24,10 +24,10 @@ export default function Form1() {
 async function obtenerDatos () {
     const tmpProductos =  await obtener("http://pruebarecursos.mep.go.cr/webservices/si-ddie/consultas_generales.php?tabla=tipo_productos");
     const tmpPoblaciones = await obtener("http://pruebarecursos.mep.go.cr/webservices/si-ddie/consultas_generales.php?tabla=productos_poblacion_meta");
-    //console.log("tmpProductos", tmpProductos);
-    //console.log("tmpPoblaciones", tmpPoblaciones);      
-    setProductos(tmpProductos);
-    setPoblaciones(tmpPoblaciones);
+    console.log("tmpProductos", tmpProductos);
+    console.log("tmpPoblaciones", tmpPoblaciones);      
+    setProductos( tmpProductos);
+    setPoblaciones( tmpPoblaciones);
     setCargado(true);
 }
 
