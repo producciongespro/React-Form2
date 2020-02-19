@@ -21,26 +21,23 @@ export default function Form1() {
     console.log(errors);
 
 
+async function obtenerDatos () {
+    const tmpProductos =  await obtener("http://pruebarecursos.mep.go.cr/webservices/si-ddie/consultas_generales.php?tabla=tipo_productos");
+    const tmpPoblaciones = await obtener("http://pruebarecursos.mep.go.cr/webservices/si-ddie/consultas_generales.php?tabla=productos_poblacion_meta");
+    //console.log("tmpProductos", tmpProductos);
+    //console.log("tmpPoblaciones", tmpPoblaciones);      
+    setProductos(tmpProductos);
+    setPoblaciones(tmpPoblaciones);
+    setCargado(true);
+}
+
+
+
     useEffect(() => {
         //Acción que se ejecuta una vez que se monta el componente
         console.log("Componente montado");
-        
-        //Carga el primer json:
-        obtener("http://pruebarecursos.mep.go.cr/webservices/si-ddie/consultas_generales.php?tabla=tipo_productos", function (data) {
-            console.log("datos", data);
-            setProductos(data);
-            //Carga el segundo select en el callback del primer "obtner":
-            obtener("http://pruebarecursos.mep.go.cr/webservices/si-ddie/consultas_generales.php?tabla=productos_poblacion_meta", function (data) {  
-                //Callback del segundo obtener
-                console.log("Poblaciones", data);
-                setPoblaciones(data);
-                //Activa cargado para que meuistre el formulario:
-                 setCargado(true)
-            })
-
-           
-        })
-    }, []);
+        obtenerDatos(); 
+       }, []);
 
 
     const handleSeleccionarProducto =(e)=>{

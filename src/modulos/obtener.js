@@ -1,13 +1,10 @@
 
-function obtener (url, cb ) {
-    fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    //console.log(data);
-    cb(data);
-  });
+async function obtener (url) {
+  const response = await fetch(url);
+  const json = await response.json();
+  console.log(json);
+  return json;
 }
+
 
 export default obtener;
